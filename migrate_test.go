@@ -117,6 +117,13 @@ func (s *migrationSuite) TestMigrationDetection() {
 			expOrder: []string{"4", "5", "6"},
 		},
 		{
+			name:     "ok, single applied",
+			mm:       []Migration{{ID: "1"}},
+			applied:  []string{"1"},
+			expOrder: []string{},
+			expError: false,
+		},
+		{
 			name: "ok, target already applied",
 			mm: []Migration{
 				{Previous: "", ID: "1"},

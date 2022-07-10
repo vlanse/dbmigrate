@@ -130,6 +130,9 @@ func findMigrationsToApply(migrations []Migration, applied []string, targetID st
 			if _, found := aMap[m.Previous]; found {
 				appliedFound = true
 			}
+			if _, found := aMap[m.ID]; found {
+				appliedFound = true
+			}
 		}
 
 		if prev, found := mMap[m.ID]; found {
