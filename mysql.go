@@ -24,7 +24,7 @@ func (s *mysqlSupp) disableFKs(_ Querier) error {
 }
 
 func (s *mysqlSupp) saveMigrationToLog(q Querier, migrationID, desc string) error {
-	query := `INSERT INTO migrations (desc, id, at) VALUES (?, ?, NOW());`
+	query := `INSERT INTO _migration (desc, id, at) VALUES (?, ?, NOW());`
 	if _, err := q.Exec(query, desc, migrationID); err != nil {
 		return fmt.Errorf("mysql: save migration info to db: %w", err)
 	}

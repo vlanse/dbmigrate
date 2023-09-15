@@ -27,7 +27,7 @@ func newDialectSupp(dialect string) dialectSupp {
 
 func ensureMigrationsHistoryTableExists(q Querier) error {
 	_, err := q.Exec(`
-		CREATE TABLE IF NOT EXISTS migrations (
+		CREATE TABLE IF NOT EXISTS _migration (
 			id TEXT NOT NULL,
 			desc TEXT NOT NULL,
 			at DATETIME NOT NULL
@@ -40,7 +40,7 @@ func ensureMigrationsHistoryTableExists(q Querier) error {
 }
 
 func getAppliedMigrations(q Querier) ([]string, error) {
-	rows, err := q.Query(`SELECT id FROM migrations`)
+	rows, err := q.Query(`SELECT id FROM _migration`)
 	if err != nil {
 		return nil, err
 	}

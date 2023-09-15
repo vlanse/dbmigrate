@@ -37,7 +37,7 @@ func (s *sqliteSupp) disableFKs(q Querier) error {
 
 func (s *sqliteSupp) saveMigrationToLog(q Querier, migrationID, desc string) error {
 	if _, err := q.Exec(
-		`INSERT INTO migrations (desc, id, at) VALUES (?, ?, DATE('now'));`, desc, migrationID,
+		`INSERT INTO _migration (desc, id, at) VALUES (?, ?, DATE('now'));`, desc, migrationID,
 	); err != nil {
 		return fmt.Errorf("sqlite: save migration info to db: %w", err)
 	}
